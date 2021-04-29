@@ -3,6 +3,7 @@ package src;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -16,14 +17,18 @@ public class Server {
 	private static int cpt = 0;
 	private Map<Integer, Socket> connexions = new HashMap<Integer, Socket>();
 	
+	
+	//create a serverSocket
 	public Server(int port){
 		
 		try {
 			this.port = port;
 			ServerSocket server = new ServerSocket(port);
-			server.accept();
 			this.id = cpt ++;
 			this.host = "ppti−14−508−0"+id+".ufr−info−p6.jussieu.fr";
+			server.bind(new InetSocketAddress(
+							InetAddress.getByName(host),port));
+			server.accept();
 		}catch(IOException e) {
 			e.printStackTrace();;
 		}
@@ -44,7 +49,6 @@ public class Server {
 	
 	
 	public void connectTo(Server s2) {
-		
 		try {
 			InetAddress inetAddress = InetAddress.getByName(s2.getHost());
 			Socket socket = new Socket (inetAddress, s2.getPort() );
