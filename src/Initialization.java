@@ -8,7 +8,7 @@ import java.util.List;
 public class Initialization {
 
 	private final static int N = 4;									// number of servers
-	private final static int initialPort = 7000;					//starting point of servers 's port
+	private final static int initialPort = 1024;					//starting point of servers 's port
 	private final static List<Server> servers= new ArrayList<>();	// list of servers
 	
 	
@@ -36,7 +36,9 @@ public class Initialization {
 			}
 		}
 	}
-		
+	
+	
+	//deconnexion 
 	
 
 	public static void main(String args[]) {

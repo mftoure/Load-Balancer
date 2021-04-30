@@ -7,6 +7,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Server {
@@ -15,7 +16,9 @@ public class Server {
 	private int port;
 	private int id;
 	private static int cpt = 0;
-	private Map<Integer, Socket> connexions = new HashMap<Integer, Socket>();
+	private Map<Integer, Socket> connexions = new HashMap<Integer, Socket>();		//dictionnary of (id, socket)
+	private Map<Integer, Integer> loads = new HashMap<Integer, Integer>();			//map des charges de tous les serveurs
+	//private List<Task> tasks = new ArrayList<Task>();								//liste des taches à faire 
 	
 	
 	//create a serverSocket
@@ -23,14 +26,14 @@ public class Server {
 		
 		try {
 			this.port = port;
-			ServerSocket server = new ServerSocket(port);
 			this.id = cpt ++;
-			this.host = "ppti−14−508−0"+id+".ufr−info−p6.jussieu.fr";
-			server.bind(new InetSocketAddress(
-							InetAddress.getByName(host),port));
+			this.host = "ppti-14-508-1"+id+".ufr-info-p6.jussieu.fr";
+			InetAddress address = InetAddress.getByName(host);
+			
+			ServerSocket server = new ServerSocket(22,0 ,address);
 			server.accept();
 		}catch(IOException e) {
-			e.printStackTrace();;
+			e.printStackTrace();
 		}
 		
 	}
@@ -59,4 +62,8 @@ public class Server {
 		}
 		
 	}
+	
+	//
+	
+	
 }
