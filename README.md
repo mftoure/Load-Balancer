@@ -27,7 +27,7 @@ Displays a list of all processes that have been started.
 gkill -sig gpid
 ```
 
-sends the sig signal to the process identified by gpid.
+Sends the sig signal to the process identified by gpid.
 
 
 
